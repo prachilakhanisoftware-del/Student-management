@@ -175,14 +175,13 @@ USE_TZ = True
 
 from pathlib import Path
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # STATICFILES_DIRS = [
 #     BASE_DIR / "static",
 # ]
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR /"media"
 
@@ -319,3 +318,4 @@ if not DEBUG:
 # print("GOOGLE CLIENT ID:", os.getenv("GOOGLE_CLIENT_ID"))
 # print("CLIENT SECRET EXISTS:", bool(os.getenv("GOOGLE_CLIENT_SECRET")))
 
+#  https://student-management-245c.onrender.com
