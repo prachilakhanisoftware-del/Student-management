@@ -2,8 +2,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status,mixins
 from django.shortcuts import get_object_or_404
-from .models import students
-from .serializers import StudentSerializer
+from .models import students, studentdocument
+from .serializers import StudentSerializer, StudentDocumentSerializer
 from rest_framework.generics import GenericAPIView
 from django_filters.rest_framework import DjangoFilterBackend
 from .permissions import IsTeacherOrAdmin
@@ -232,6 +232,19 @@ class StudentViewSet(ModelViewSet):
             "full_name": student.name,
             "email_address": student.email
         })
+    @action(detail=True, methods=["get"])
+    def documents(self, request, pk=None, version=None):
+
+        student = self.get_object()
+
+        documents = student.documents.all()
+
+        serializer = StudentDocumentSerializer(
+            documents,
+            many=True
+        )
+
+        return Response(serializer.data)
 
 class LogoutView(APIView):
     permission_classes = [IsAuthenticated]

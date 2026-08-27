@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import students,User
+from .models import students,User,studentdocument
 
 class StudentSerializer(serializers.ModelSerializer):
 
@@ -53,3 +53,10 @@ class UserSerializer(serializers.ModelSerializer):
                 "write_only": True
             }
         }
+
+class StudentDocumentSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = studentdocument
+        fields = "__all__"
+        read_only_fields = ["id", "uploaded_at"]
