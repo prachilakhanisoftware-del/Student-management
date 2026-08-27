@@ -1,0 +1,204 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+
+    <style>
+        /* ---------- Reset ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ---------- Page ---------- */
+body {
+    min-height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #eef4ff, #f8faff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1e293b;
+}
+
+/* ---------- Main Card ---------- */
+.container {
+    width: 90%;
+    max-width: 850px;
+    min-height: 430px;
+
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 24px;
+
+    padding: 60px;
+    text-align: center;
+
+    box-shadow:
+        0 20px 50px rgba(15, 23, 42, 0.12);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ---------- Heading ---------- */
+.container h1 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    color: #2563eb;
+}
+
+/* ---------- Description ---------- */
+.container p {
+    font-size: 17px;
+    color: #64748b;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+/* ---------- Buttons ---------- */
+.buttons {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+}
+
+/* ---------- Button ---------- */
+.buttons a {
+    text-decoration: none;
+    padding: 14px 34px;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    transition: all 0.25s ease;
+}
+
+/* Register */
+.register-btn {
+    background: #2563eb;
+    color: white;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+}
+
+.register-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+/* Login */
+.login-btn {
+    background: white;
+    color: #2563eb;
+
+    border: 2px solid #2563eb;
+}
+
+.login-btn:hover {
+    background: #2563eb;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* ---------- Google Button ---------- */
+.google-btn {
+    margin-top: 25px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 12px 24px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 9px;
+
+    background: white;
+    color: #374151;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    text-decoration: none;
+
+    transition: all 0.2s ease;
+}
+
+.google-btn:hover {
+    background: #f8fafc;
+    border-color: #9ca3af;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 600px) {
+
+    .container {
+        width: 92%;
+        padding: 40px 25px;
+    }
+
+    .container h1 {
+        font-size: 30px;
+    }
+
+    .container p {
+        font-size: 15px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .buttons a {
+        width: 100%;
+    }
+}
+
+    </style>
+
+</head>
+<body>
+
+<div class="home-container">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <div class="container">
+
+    <h1>Student Management System</h1>
+
+    <p>
+        Welcome to the Student Management System.
+        Please register or login to continue.
+    </p>
+
+    <div class="buttons">
+
+        <a href="{% url 'register' %}" class="register-btn">
+            Register
+        </a>
+
+        <a href="{% url 'login' %}" class="login-btn">
+            Login
+        </a>
+
+    </div>
+
+    <a href="{% url 'google_login' %}" class="google-btn">
+        Login with Google
+    </a>
+
+</div>
+</div>
+
+</body>
+</html>

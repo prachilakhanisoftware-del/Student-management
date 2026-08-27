@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Student</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background:#f4f7fc;
+        }
+
+        .container{
+            width:90%;
+            max-width:600px;
+            margin:50px auto;
+        }
+
+        .header{
+            background:#2563eb;
+            color:white;
+            padding:20px;
+            border-radius:10px 10px 0 0;
+            text-align:center;
+        }
+
+        .card{
+            background:white;
+            padding:30px;
+            border-radius:0 0 10px 10px;
+            box-shadow:0 4px 10px rgba(0,0,0,.1);
+        }
+
+        label{
+            display:block;
+            margin-top:15px;
+            margin-bottom:6px;
+            font-weight:bold;
+            color:#333;
+        }
+
+        input{
+            width:100%;
+            padding:12px;
+            border:1px solid #ccc;
+            border-radius:6px;
+            font-size:16px;
+            outline:none;
+        }
+
+        input:focus{
+            border-color:#2563eb;
+            box-shadow:0 0 5px rgba(37,99,235,.3);
+        }
+
+        .buttons{
+            margin-top:25px;
+            display:flex;
+            justify-content:space-between;
+        }
+
+        .update-btn{
+            background:#2563eb;
+            color:white;
+            border:none;
+            padding:12px 25px;
+            border-radius:6px;
+            font-size:16px;
+            cursor:pointer;
+            transition:.3s;
+        }
+
+        .update-btn:hover{
+            background:#1d4ed8;
+        }
+
+        .back-btn{
+            background:#6b7280;
+            color:white;
+            text-decoration:none;
+            padding:12px 25px;
+            border-radius:6px;
+            transition:.3s;
+        }
+
+        .back-btn:hover{
+            background:#4b5563;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>Update Student</h1>
+    </div>
+
+    <div class="card">
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <div class="buttons">
+        <a href="{% url 'dashboard' %}" class="back-btn">
+            ← Back
+        </a>
+
+        <button type="submit" class="update-btn">
+            Update Student
+        </button>
+    </div>
+</form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

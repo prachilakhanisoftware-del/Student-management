@@ -1,0 +1,107 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background:#f4f7fc;
+        }
+
+        .container{
+            width:90%;
+            max-width:900px;
+            margin:80px auto;
+            text-align:center;
+        }
+
+        .card{
+            background:white;
+            padding:50px;
+            border-radius:12px;
+            box-shadow:0 5px 15px rgba(0,0,0,.1);
+        }
+
+        h1{
+            color:#2563eb;
+            margin-bottom:20px;
+        }
+
+        p{
+            color:#666;
+            margin-bottom:40px;
+            font-size:18px;
+        }
+
+        .btn{
+            display:inline-block;
+            margin:10px;
+            padding:12px 25px;
+            text-decoration:none;
+            border-radius:6px;
+            font-size:16px;
+            font-weight:bold;
+            transition:.3s;
+        }
+
+        .register{
+            background:#16a34a;
+            color:white;
+        }
+
+        .register:hover{
+            background:#15803d;
+        }
+
+        .login{
+            background:#2563eb;
+            color:white;
+        }
+
+        .login:hover{
+            background:#1d4ed8;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="home-container">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <div class="card">
+
+        <h1>Student Management System</h1>
+
+        <p>
+            Welcome to the Student Management System.
+            Please register or login to continue.
+        </p>
+
+        <a href="{% url 'register' %}" class="btn register">
+            Register
+        </a>
+
+        <a href="{% url 'login' %}" class="btn login">
+            Login
+        </a>
+
+    </div>
+    <br>
+<a href="/accounts/google/login/">
+    <button type="button">Login with Google</button>
+</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+  <!-- Header -->
+       <header class="topbar">
+
+    <div class="header-left">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <h1>SMS</h1>
+    </div>
+
+    <div class="dropdown">
+    <button class="dropbtn">
+        <i class="fa-solid fa-circle-user"></i>
+        Welcome, {{ request.user.username }}
+        <i class="fa-solid fa-chevron-down"></i>
+    </button>
+
+    <div class="dropdown-content">
+                <a href="{% url 'change_password' %}">
+
+            <i class="fa-solid fa-lock"></i> Security
+        </a>
+
+        <a href="{% url 'logout' %}">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </a>
+    </div>
+</div>
+
+</header>
+
+<div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+
+        <ul>
+
+            <li>
+                <a href="{% url 'dashboard' %}">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'documents' %}">
+                    <i class="fa-solid fa-file-lines"></i>
+                    Documents
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'add_students' %}">
+                    <i class="fa-solid fa-user-graduate"></i>
+                    Students
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'teacher_list' %}">
+                    <i class="fa-solid fa-users"></i>
+                    Teachers
+                </a>
+            </li>
+
+           
+            <li>
+                <a href="{% url 'logout' %}">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+
+      
+        <!-- Messages -->
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <!-- Page Content -->
+
+        {% block content %}
+        {% endblock %}
+
+    </div>
+
+</div>
+
+<script>
+window.onload = function () {
+    setTimeout(function () {
+        document.querySelectorAll(".alert").forEach(function (msg) {
+            msg.style.display = "none";
+        });
+    }, 2000);
+};
+</script>
+
+</body>
+</html>

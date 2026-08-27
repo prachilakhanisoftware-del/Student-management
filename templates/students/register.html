@@ -1,0 +1,171 @@
+{% block content %}
+<head><style>.register-container{
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:#f4f7fc;
+
+}
+
+.register-card{
+
+    width:420px;
+
+    background:#ffffff;
+
+    padding:40px;
+
+    border-radius:12px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.12);
+
+}
+
+.register-card h2{
+
+    text-align:center;
+
+    color:#1d4ed8;
+
+    margin-bottom:8px;
+
+}
+
+.subtitle{
+
+    text-align:center;
+
+    color:#666;
+
+    margin-bottom:30px;
+
+}
+
+.register-card p{
+
+    margin-bottom:18px;
+
+}
+
+.register-card label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+    color:#444;
+
+}
+
+.register-card input{
+
+    width:100%;
+
+    padding:12px;
+
+    border:1px solid #d1d5db;
+
+    border-radius:8px;
+
+    font-size:15px;
+
+    transition:.3s;
+
+    box-sizing:border-box;
+
+}
+
+.register-card input:focus{
+
+    outline:none;
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 6px rgba(37,99,235,.25);
+
+}
+
+.helptext{
+
+    display:block;
+
+    margin-top:6px;
+
+    color:#888;
+
+    font-size:12px;
+
+}
+
+.errorlist{
+
+    list-style:none;
+
+    color:#dc2626;
+
+    padding:0;
+
+    margin-top:6px;
+
+    font-size:13px;
+
+}
+
+.register-btn{
+
+    width:100%;
+
+    margin-top:20px;
+
+    padding:12px;
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    border-radius:8px;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.register-btn:hover{
+
+    background:#1e40af;
+
+}</style></head>
+<div class="register-container">
+
+    <form method="POST" class="register-card">
+
+        <h2>Create Account</h2>
+
+        <p class="subtitle">
+            Register to access the Student Management System
+        </p>
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit" class="register-btn">
+            Register
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

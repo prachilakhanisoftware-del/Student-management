@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="main-container">
+
+    <!-- Sidebar -->
+  
+    <!-- Main Content -->
+
+        <!-- Dashboard Cards -->
+        <div class="dashboard-cards">
+
+            <div class="dash-card">
+                <span>👨‍🎓</span>
+                <h3>Total Students</h3>
+                <h2>{{ total_students }}</h2>
+            </div>
+
+            <div class="dash-card">
+                <span>👨‍🏫</span>
+                <h3>Total Teachers</h3>
+                <h2>{{ total_teachers }}</h2>
+            </div>
+
+            <div class="dash-card">
+                <span>📚</span>
+                <h3>Total Courses</h3>
+                <h2>{{ total_courses }}</h2>
+            </div>
+
+        </div>
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <h2>Student List</h2>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+
+            <a href="{% url 'dashboard' %}">
+                <button type="button">All</button>
+            </a>
+
+            <!-- Course Filter -->
+            <form method="GET">
+                <select name="course">
+                    <option value="">All Courses</option>
+                    <option value="Python">Python</option>
+                    <option value="Django">Django</option>
+                    <option value="Java">Java</option>
+                    <option value="MVC .NET">MVC .NET</option>
+                </select>
+                <button type="submit">Filter</button>
+            </form>
+
+            <!-- Teacher Filter -->
+            <form method="GET">
+                <select name="teacher">
+                    <option value="">All Teachers</option>
+
+                    {% for teacher in teachers %}
+                        <option value="{{ teacher.id }}">
+                            {{ teacher.teacher_name }}
+                        </option>
+                    {% endfor %}
+
+                </select>
+
+                <button type="submit">Filter</button>
+            </form>
+
+            <!-- Search -->
+            <form method="GET">
+                <input
+                    type="text"
+                    name="search"
+                    placeholder="Search by name"
+                    value="{{ request.GET.search }}"
+                >
+                <button type="submit">Search</button>
+            </form>
+
+            <a href="?sort=age">Age ↑</a>
+            <a href="?sort=-age">Age ↓</a>
+
+        </div>
+
+        <!-- Student Table -->
+        <div class="table-container">
+
+            <table class="student-table">
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Email</th>
+                        <th>Course</th>
+                        <th>Photo</th>
+                        <th>Teacher</th>
+                        <th>Documents</th>
+                        <th>View</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                {% for student in students %}
+
+                    <tr>
+
+                        <td>{{ student.id }}</td>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.age }}</td>
+                        <td>{{ student.email }}</td>
+                        <td>{{ student.course }}</td>
+
+                        <td>
+
+                            {% if student.photo %}
+                                <img src="{{ student.photo.url }}" width="60">
+                            {% else %}
+                                No Image
+                            {% endif %}
+
+                        </td>
+
+                        <td>{{ student.teacher }}</td>
+
+                        <td>
+                            <a href="{% url 'student_documents' student.id %}">📁</a>
+                        </td>
+
+                        <td>
+                            <a href="{% url 'student_detail' student.id %}">👁️</a>
+                        </td>
+
+                        <td class="action-buttons">
+
+                            <a href="{% url 'update_students' student.id %}" class="edit-btn">
+                                Edit
+                            </a>
+
+                            <a href="{% url 'delete_students' student.id %}" class="delete-btn">
+                                Delete
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+
+            {% if students.has_previous %}
+                <a href="?page={{ students.previous_page_number }}">&laquo;</a>
+            {% endif %}
+
+            {% for num in students.paginator.page_range %}
+
+                {% if students.number == num %}
+                    <span class="current-page">{{ num }}</span>
+                {% else %}
+                    <a href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+
+            {% endfor %}
+
+            {% if students.has_next %}
+                <a href="?page={{ students.next_page_number }}">&raquo;</a>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+{% endblock %}

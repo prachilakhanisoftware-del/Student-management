@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="content">
+
+    <!-- Page Header -->
+    <div class="page-header">
+
+        <h2>Add Student</h2>
+
+
+    </div>
+
+    <!-- Form -->
+    <div class="form-box">
+
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <div class="form-actions">
+
+                <button type="submit" class="submit-btn">
+                    Save Student
+                </button>
+
+            </div>
+
+        </form>
+
+       
+    </div>
+
+</div>
+ <a href="{% url 'dashboard' %}" class="back-btn">
+            ← Back to Dashboard
+        </a>
+{% endblock %}

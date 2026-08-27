@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="page-header">
+
+    <h2>Teachers List</h2>
+
+</div>
+
+<div class="table-container">
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>ID</th>
+                <th>Teacher Name</th>
+                <th>Course</th>
+                <th>Email</th>
+                <th>Salary</th>
+                <th>Total Students</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for teacher in teachers %}
+
+            <tr>
+
+                <td>{{ teacher.id }}</td>
+
+                <td>{{ teacher.teacher_name }}</td>
+
+                <td>{{ teacher.course }}</td>
+
+                <td>{{ teacher.t_email }}</td>
+
+                <td>₹ {{ teacher.salary }}</td>
+                    <td>{{ teacher.total_students }}</td>
+
+            </tr>
+
+        {% empty %}
+
+            <tr>
+
+                <td colspan="5">
+                    No Teachers Found
+                </td>
+
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+    <br><br>
+<div class="buttons">
+        <a href="{% url 'dashboard' %}" class="back-btn">
+            ← Back
+        </a></div>
+</div>
+
+{% endblock %}

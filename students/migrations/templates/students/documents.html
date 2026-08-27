@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="page-header">
+
+    <h2>Student Documents</h2>
+
+</div>
+
+<div class="table-container">
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>ID</th>
+                <th>Student Name</th>
+                <th>Document Type</th>
+                <th>File</th>
+                <th>Uploaded At</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for doc in documents %}
+
+            <tr>
+
+                <td>{{ doc.id }}</td>
+
+                <td>{{ doc.student.name }}</td>
+
+                <td>{{ doc.document_type }}</td>
+
+                <td>
+
+                    <a href="{{ doc.file.url }}" target="_blank">
+                        📄 View
+                    </a>
+
+                </td>
+
+                <td>{{ doc.uploaded_at }}</td>
+
+            </tr>
+
+        {% empty %}
+
+            <tr>
+
+                <td colspan="5">
+                    No Documents Found
+                </td>
+
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+    <br><br>
+<div class="buttons">
+        <a href="{% url 'dashboard' %}" class="back-btn">
+            ← Back
+        </a></div>
+</div>
+
+{% endblock %}

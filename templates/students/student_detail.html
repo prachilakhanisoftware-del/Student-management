@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="student-detail-container">
+
+    <div class="student-header">
+        <div class="student-image">
+            {% if student.photo %}
+                <img src="{{ student.photo.url }}" alt="{{ student.name }}">
+            {% else %}
+                <img src="{% static 'images/default-user.png' %}" alt="No Image">
+            {% endif %}
+        </div>
+
+        <div class="student-info">
+            <h2>{{ student.name }}</h2>
+
+            <div class="info-grid">
+                <div><strong>Age</strong><span>{{ student.age }}</span></div>
+                <div><strong>Email</strong><span>{{ student.email }}</span></div>
+                <div><strong>Course</strong><span>{{ student.course }}</span></div>
+                <div><strong>Teacher</strong><span>{{ student.teacher }}</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="document-section">
+
+        <div class="document-header">
+            <h3>Student Documents</h3>
+
+            <a href="{% url 'add_document' student.id %}" class="upload-btn">
+                + Upload Document
+            </a>
+        </div>
+
+        <table class="document-table">
+
+            <thead>
+                <tr>
+                    <th>Document Type</th>
+                    <th>File</th>
+                    <th>Uploaded At</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+            {% if documents %}
+
+                {% for doc in documents %}
+                <tr>
+
+                    <td>{{ doc.document_type }}</td>
+
+                    <td>
+                        <a href="{{ doc.file.url }}" target="_blank" class="view-btn">
+                            View Document
+                        </a>
+                    </td>
+
+                    <td>{{ doc.uploaded_at }}</td>
+
+                </tr>
+                {% endfor %}
+
+            {% else %}
+
+                <tr>
+                    <td colspan="3" class="empty-row">
+                        No Documents Uploaded
+                    </td>
+                </tr>
+
+            {% endif %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <a href="{% url 'dashboard' %}" class="back-btn">
+        ← Back to Dashboard
+    </a>
+
+</div>
+
+{% endblock %}

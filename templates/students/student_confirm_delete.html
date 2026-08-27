@@ -1,0 +1,90 @@
+<style>
+    .delete-container {
+        max-width: 420px;
+        margin: 80px auto;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        padding: 32px 28px;
+        text-align: center;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        border-top: 5px solid #dc3545;
+    }
+
+    .delete-container h2 {
+        color: #dc3545;
+        font-size: 22px;
+        margin-bottom: 16px;
+    }
+
+    .delete-container p {
+        color: #444;
+        font-size: 15px;
+        line-height: 1.6;
+        margin-bottom: 28px;
+    }
+
+    .delete-container strong {
+        color: #1a1a2e;
+    }
+
+    .delete-actions {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .btn-delete {
+        background: #dc3545;
+        color: #fff;
+        border: none;
+        padding: 10px 22px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s ease;
+    }
+
+    .btn-delete:hover {
+        background: #b02a37;
+    }
+
+    .btn-cancel {
+        background: #f1f1f1;
+        color: #333;
+        text-decoration: none;
+        padding: 10px 22px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 600;
+        transition: background 0.2s ease;
+    }
+
+    .btn-cancel:hover {
+        background: #e2e2e2;
+    }
+</style>
+
+<div class="delete-container">
+    <h2>Delete Student</h2>
+
+    <p>
+        Are you sure you want to delete
+        <strong>{{ object.name }}</strong>?
+    </p>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="delete-actions">
+            <button type="submit" class="btn-delete">
+                Yes, Delete
+            </button>
+
+            <a href="{% url 'dashboard' %}" class="btn-cancel">
+                Cancel
+            </a>
+        </div>
+    </form>
+</div>
