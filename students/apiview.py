@@ -22,7 +22,7 @@ from django.db import connection
 from django.db import transaction
 from rest_framework.exceptions import ValidationError
 logger=logging.getLogger(__name__)
-
+#git cheack
 class SentryTestAPIView(APIView):
     def get(self, request):
         raise Exception("🔥 Sentry test error")
