@@ -77,7 +77,7 @@ def register(request):
             )
             teacher_group = Group.objects.get(name="teachers")
 
-            user.groups.add(teachers)
+            user.groups.add(teacher_group)
         messages.success(
     request,
     "Registration Successful."
