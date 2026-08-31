@@ -389,7 +389,15 @@ def documents(request):
     })
 from django.http import HttpResponse
 def teacher_list(request):
-    return HttpResponse("Teacher view is working!")
+    print("database hit")
+
+    teacher = teachers.objects.annotate(
+        total_students=Count("students")
+    )
+
+    return render(request, "students/teachers.html", {
+        "teachers": teacher
+    })
 
 from .models import teachers
 # @permission_required("teachers.teacher_list")
