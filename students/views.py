@@ -358,6 +358,23 @@ def student_documents(request, id):
             "documents": documents,
         }
     )
+from django.http import FileResponse
+def download_document(request, student_id, document_id):
+
+    student = get_object_or_404(students, id=student_id)
+
+    document = get_object_or_404(
+        student.documents.all(),
+        id=document_id
+    )
+
+    response = FileResponse(
+        document.file.open("rb"),
+        as_attachment=True,
+        filename=document.file.name.split("/")[-1]
+    )
+
+    return response
 
 from django.views.generic import DetailView
 

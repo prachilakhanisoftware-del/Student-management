@@ -57,6 +57,12 @@ urlpatterns = [
 
     path("student/<int:pk>/",views.StudentDetailView.as_view(), name="student_detail"),
     path("documents/", views.documents, name="documents"),
+    path(
+    "student/<int:student_id>/document/<int:document_id>/download/",
+    views.download_document,
+    name="download_document"
+),
+
     path("teachers/", views.teacher_list, name="teacher_list"),
     path("security/",views.change_password,name="change_password"),
 

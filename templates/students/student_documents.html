@@ -40,9 +40,10 @@
 
             <td>
 
-                <a href="{{ document.file.url }}" download>
-                    Download
-                </a>
+                <a href="{% url 'download_document' student.id document.id %}">
+    Download
+</a>
+
 
             </td>
 
