@@ -387,21 +387,22 @@ def documents(request):
     return render(request, "students/documents.html", {
         "documents": documents
     })
-
-
+from django.http import HttpResponse
+def teacher_list(request):
+    return HttpResponse("Teacher view is working!")
 
 from .models import teachers
 # @permission_required("teachers.teacher_list")
 # from django.views.decorators.cache import cache_page
 # @cache_page(60 * 5)
-def teacher_list(request):
-    print("database hit")
-    teacher = teachers.objects.all()
+# def teacher_list(request):
+#     print("database hit")
+#     teacher = teachers.objects.all()
 
 
-    return render(request, "students/teachers.html", {
-        "teachers": teacher
-    })
+#     return render(request, "students/teachers.html", {
+#         "teachers": teacher
+#     })
 
 
 
