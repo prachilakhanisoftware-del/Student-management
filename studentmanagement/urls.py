@@ -81,16 +81,16 @@ urlpatterns = [
         ),
         name="swagger-ui",
     ),
-        path("api/<str:version>/", include(router.urls)),
+        path("api/", include(router.urls)),
 
     path(
-    "api/<str:version>/token/",
+    "api/token/",
     TokenObtainPairView.as_view(),
     name="token_obtain_pair",
 ),
 
 path(
-    "api/<str:version>/token/refresh/",
+    "api/token/refresh/",
     TokenRefreshView.as_view(),
     name="token_refresh",
 ),

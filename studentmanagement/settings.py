@@ -299,22 +299,18 @@ if not DEBUG:
     CSRF_COOKIE_SECURE = True
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
-# SOCIALACCOUNT_PROVIDERS = {
-#     "google": {
-#         "APPS": [
-#             {
-#                 "client_id":GOOGLE_CLIENT_ID,
-#                 "secret":GOOGLE_CLIENT_SECRET,
-#                 "key": "",
-#             }
-#         ],
-#         "SCOPE": [
-#             "profile",
-#             "email",
-
-#         ],
-#     }
-# }
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "APP": {
+            "client_id": GOOGLE_CLIENT_ID,
+            "secret": GOOGLE_CLIENT_SECRET,
+            "key": "",
+        },
+        "AUTH_PARAMS": {
+            "prompt": "select_account",
+        },
+    },
+}
 # print("GOOGLE CLIENT ID:", os.getenv("GOOGLE_CLIENT_ID"))
 # print("CLIENT SECRET EXISTS:", bool(os.getenv("GOOGLE_CLIENT_SECRET")))
 
