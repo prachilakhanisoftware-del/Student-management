@@ -396,9 +396,9 @@ from django.views.decorators.cache import cache_page
 @cache_page(60 * 5)
 def teacher_list(request):
     print("database hit")
-    teacher= teachers.objects.annotate(
-    total_students=Count("students")
-)
+    teacher = teachers.objects.all()
+
+
     return render(request, "students/teachers.html", {
         "teachers": teacher
     })
