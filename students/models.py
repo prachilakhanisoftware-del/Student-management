@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary_storage.storage import RawMediaCloudinaryStorage
 # Create your models here.
 
 class teachers(models.Model):
@@ -23,7 +24,7 @@ class students(models.Model):
     # course=models.ManyToManyField(courses)
     course=models.CharField(max_length=67, db_index=True
                             )
-    photo=models.FileField(upload_to="students/",
+    photo=models.ImageField(upload_to="students/",
 )
     teacher=models.ForeignKey(teachers,
                                on_delete=models.CASCADE,
@@ -57,7 +58,8 @@ class studentdocument(models.Model):
     )
 
     file = models.FileField(
-        upload_to="student_documents/"
+        upload_to="student_documents/",
+         storage=RawMediaCloudinaryStorage()
     )
 
     uploaded_at = models.DateTimeField(
