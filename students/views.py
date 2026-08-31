@@ -392,8 +392,8 @@ def documents(request):
 
 from .models import teachers
 # @permission_required("teachers.teacher_list")
-from django.views.decorators.cache import cache_page
-@cache_page(60 * 5)
+# from django.views.decorators.cache import cache_page
+# @cache_page(60 * 5)
 def teacher_list(request):
     print("database hit")
     teacher = teachers.objects.all()
